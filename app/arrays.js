@@ -1,61 +1,108 @@
 if (typeof define !== 'function') { var define = require('amdefine')(module); }
 
-define(function() {
-  return {
-    indexOf : function(arr, item) {
+define(function () {
+    return {
 
-    },
+        indexOf: function (arr, item) {
+            return arr.indexOf(item);
+        },
 
-    sum : function(arr) {
+        sum: function (arr) {
+            var sum = 0;
 
-    },
+            $.each(arr, function () {
+                sum += this;
+            });
 
-    remove : function(arr, item) {
+            return sum;
+        },
 
-    },
+        remove: function (arr, item) {
+            var i;
 
-    removeWithoutCopy : function(arr, item) {
+            while ((i = arr.indexOf(item)) >= 0) {
+                arr.splice(i, 1);
+            }
 
-    },
+            return arr;
+        },
 
-    append : function(arr, item) {
+        removeWithoutCopy: function (arr, item) {
+            return this.remove(arr, item);
+        },
 
-    },
+        append: function (arr, item) {
+            arr.push(item);
+            return arr;
+        },
 
-    truncate : function(arr) {
+        truncate: function (arr) {
+            arr.pop();
+            return arr;
+        },
 
-    },
+        prepend: function (arr, item) {
+            arr.unshift(item);
+            return arr;
+        },
 
-    prepend : function(arr, item) {
+        curtail: function (arr) {
+            arr.shift();
+            return arr;
+        },
 
-    },
+        concat: function (arr1, arr2) {
+            return arr1.concat(arr2);
+        },
 
-    curtail : function(arr) {
+        insert: function (arr, item, index) {
+            arr.splice(index, 0, item);
+            return arr;
+        },
 
-    },
+        count: function (arr, item) {
+            var i = -1, count = 0;
 
-    concat : function(arr1, arr2) {
+            while ((i = arr.indexOf(item, i + 1)) >= 0) {
+                count++;
+            }
 
-    },
+            return count;
+        },
 
-    insert : function(arr, item, index) {
+        duplicates: function (arr) {
+            var duplicates = [];
 
-    },
+            for (var i = 0; i < arr.length; i++) {
+                // Discard items already present in duplicates array
+                if (duplicates.indexOf(arr[i]) >= 0) continue;
 
-    count : function(arr, item) {
+                // If item more than once in the array
+                if (this.count(arr, arr[i]) > 1) duplicates.push(arr[i]);
+            }
 
-    },
+            return duplicates;
+        },
 
-    duplicates : function(arr) {
+        square: function (arr) {
+            var squares = [];
 
-    },
+            $.each(arr, function () {
+                squares.push(this * this);
+            });
 
-    square : function(arr) {
+            return squares;
+        },
 
-    },
+        findAllOccurrences: function (arr, target) {
+            var i = -1,
+                occurrences = [];
 
-    findAllOccurrences : function(arr, target) {
+            while ((i = arr.indexOf(target, i + 1)) >= 0) {
+                occurrences.push(i);
+            }
 
-    }
-  };
+            return occurrences;
+        }
+    };
 });
