@@ -48,7 +48,7 @@ define(function () {
 
         callIt: function (fn) {
             var args = Array.apply(args, arguments);
-            fn.apply(fn, args.slice(1,args.length));
+            fn.apply(fn, args.slice(1, args.length));
         },
 
         partialUsingArguments: function (fn) {
@@ -64,7 +64,6 @@ define(function () {
         },
 
         curryIt: function (fn) {
-
             var executeFunction = function (args) {
                 return function (arg) {
                     args.push(arg);
